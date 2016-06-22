@@ -21,7 +21,7 @@ exports.devServer = function(options) {
 	}
 }
 
-exports.setupCSS = function(paths) {
+exports.setupSass = function(paths) {
 	return {
 		module: {
 			loaders: [
@@ -84,13 +84,13 @@ exports.clean = function(path) {
 	}
 }
 
-exports.extractCSS = function(paths) {
+exports.extractSass = function(paths) {
 	return {
 		module: {
 			loaders: [
 				{
 					test: /\.scss$/,
-					loader: ExtractTextPlugin.extract('style?sourceMap', 'css?sourceMap', 'autoprefixer?browsers=last 3 versions', 'sass?outputStyle=expanded'),
+					loader: ExtractTextPlugin.extract('style?sourceMap', 'css!sass?sourceMap'),
 					include: paths
 				}
 			]

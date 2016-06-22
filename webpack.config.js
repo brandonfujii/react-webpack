@@ -51,7 +51,7 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react']
       }),
       parts.minify(),
-      parts.extractCSS(PATHS.style),
+      parts.extractSass(PATHS.style),
       parts.purifyCSS([PATHS.app])
     );
     break;
@@ -76,7 +76,7 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react']
       }),
       parts.minify(),
-      parts.extractCSS(PATHS.style),
+      parts.extractSass(PATHS.style),
       parts.purifyCSS([PATHS.app])
     );
     break;
@@ -86,7 +86,7 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'eval-source-map'
       },
-      parts.setupCSS(PATHS.style),
+      parts.setupSass(PATHS.style),
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT
