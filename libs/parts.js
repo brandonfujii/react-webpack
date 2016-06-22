@@ -26,8 +26,8 @@ exports.setupCSS = function(paths) {
 		module: {
 			loaders: [
 				{
-					test: /\.css$/,
-					loaders: ['style?sourceMap', 'css?sourceMap'],
+					test: /\.scss$/,
+					loaders: ['style?sourceMap', 'css?sourceMap', 'autoprefixer?browsers=last 3 versions', 'sass?outputStyle=expanded'],
 					include: paths
 				}
 			]
@@ -89,8 +89,8 @@ exports.extractCSS = function(paths) {
 		module: {
 			loaders: [
 				{
-					test: /\.css$/,
-					loader: ExtractTextPlugin.extract('style?sourceMap', 'css?sourceMap'),
+					test: /\.scss$/,
+					loader: ExtractTextPlugin.extract('style?sourceMap', 'css?sourceMap', 'autoprefixer?browsers=last 3 versions', 'sass?outputStyle=expanded'),
 					include: paths
 				}
 			]
@@ -112,3 +112,13 @@ exports.purifyCSS = function(paths) {
 		]
 	}
 }
+
+// exports.defineJSX = function(paths) {
+// 	test: /\.jsx?$/,
+// 	loader: 'babel',
+// 	query: {
+// 		cacheDirectory: true,
+// 		presets: ['react', 'es2015']
+// 	},
+// 	include: paths
+// }
