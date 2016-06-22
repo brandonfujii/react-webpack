@@ -113,12 +113,20 @@ exports.purifyCSS = function(paths) {
 	}
 }
 
-// exports.defineJSX = function(paths) {
-// 	test: /\.jsx?$/,
-// 	loader: 'babel',
-// 	query: {
-// 		cacheDirectory: true,
-// 		presets: ['react', 'es2015']
-// 	},
-// 	include: paths
-// }
+exports.loadJSX = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.jsx$/,
+					loader: 'babel',
+					query: {
+						cacheDirectory: true,
+						presets: ['es2015', 'react']
+					},
+					include: paths
+				}
+			]
+		}
+	}
+}

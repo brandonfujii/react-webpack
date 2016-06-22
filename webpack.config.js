@@ -24,7 +24,10 @@ const common = {
     new HtmlWebpackPlugin({
       title: 'React Blah'
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  }
 }
 
 var config;
@@ -52,7 +55,8 @@ switch(process.env.npm_lifecycle_event) {
       }),
       parts.minify(),
       parts.extractSass(PATHS.style),
-      parts.purifyCSS([PATHS.app])
+      parts.purifyCSS([PATHS.app]),
+      parts.loadJSX(PATHS.build)
     );
     break;
   case 'stats':
@@ -77,7 +81,8 @@ switch(process.env.npm_lifecycle_event) {
       }),
       parts.minify(),
       parts.extractSass(PATHS.style),
-      parts.purifyCSS([PATHS.app])
+      parts.purifyCSS([PATHS.app]),
+      parts.loadJSX(PATHS.build)
     );
     break;
   default:
@@ -87,6 +92,7 @@ switch(process.env.npm_lifecycle_event) {
         devtool: 'eval-source-map'
       },
       parts.setupSass(PATHS.style),
+      parts.loadJSX(PATHS.app),
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT
