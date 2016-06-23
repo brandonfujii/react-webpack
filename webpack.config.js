@@ -22,7 +22,8 @@ const common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'React Blah'
+      title: 'React Blah',
+      filename: 'index.html'
     })
   ],
   resolve: {
@@ -56,7 +57,7 @@ switch(process.env.npm_lifecycle_event) {
       parts.minify(),
       parts.extractSass(PATHS.style),
       parts.purifyCSS([PATHS.app]),
-      parts.loadJSX(PATHS.build)
+      parts.loadJSX(PATHS.app)
     );
     break;
   case 'stats':
@@ -82,7 +83,7 @@ switch(process.env.npm_lifecycle_event) {
       parts.minify(),
       parts.extractSass(PATHS.style),
       parts.purifyCSS([PATHS.app]),
-      parts.loadJSX(PATHS.build)
+      parts.loadJSX(PATHS.app)
     );
     break;
   default:
@@ -93,6 +94,7 @@ switch(process.env.npm_lifecycle_event) {
       },
       parts.setupSass(PATHS.style),
       parts.loadJSX(PATHS.app),
+      parts.enableESLint(PATHS.app),
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT

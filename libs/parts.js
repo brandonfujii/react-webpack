@@ -118,12 +118,26 @@ exports.loadJSX = function(paths) {
 		module: {
 			loaders: [
 				{
-					test: /\.jsx$/,
+					test: /\.jsx?$/,
 					loader: 'babel',
 					query: {
 						cacheDirectory: true,
 						presets: ['es2015', 'react']
 					},
+					include: paths
+				}
+			]
+		}
+	}
+}
+
+exports.enableESLint = function(paths) {
+	return {
+		module: {
+			preLoaders: [
+				{
+					test: /\.jsx?$/,
+					loaders: ['eslint'],
 					include: paths
 				}
 			]
